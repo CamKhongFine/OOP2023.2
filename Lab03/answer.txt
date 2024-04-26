@@ -1,0 +1,29 @@
+1. What makes a class need to implement the Comparable interface?
+A class needs to implement the Comparable interface when we want to sort objects of that class based on a single attribute. The Comparable interface helps us define a default sorting rule for objects of that class.
+2. In those classes, how should you implement the compareTo() method to reflect the desired ordering?
+We implement the compareTo() method to compare objects of the class based on the attribute we want to sort. This method returns an integer indicating the corresponding order of the objects.
+3. Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+No, we cannot have two ordering rules of the item if we use this Comparable interface approach because it only uses one comparison method.
+4. Suppose the DVDs have a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+We use the Comparator class and override its compare method. This way, we can define custom sorting rules for different types of media.
+
+class CombinedComparator implements Comparator<Media> {
+    @Override
+    public int compare(Media item1, Media item2) {
+        // Compare by title
+        int titleComparison = item1.getTitle().compareTo(item2.getTitle());
+        if (titleComparison != 0) {
+            return titleComparison;
+        } else {
+            // If titles are the same, compare by decreasing length
+            if (item1 instanceof DigitalVideoDisc && item2 instanceof DigitalVideoDisc) {
+                // Compare DVDs by decreasing length
+                return Integer.compare(((DigitalVideoDisc) item2).getLength(), ((DigitalVideoDisc) item1).getLength());
+            } else {
+                // For non-DVD items, treat them as equal in length
+                // Compare by cost if they are not DVDs or if both are DVDs with the same length
+                return Double.compare(item1.getCost(), item2.getCost());
+            }
+        }
+    }
+}
