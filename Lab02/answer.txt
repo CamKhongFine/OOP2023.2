@@ -1,0 +1,2 @@
+=> No, we can not create two constructor with the same number of parameter, the same type and order.
+In this case, two constructor have just one parameter with type String and the same name, so it againts the Java overloading rule
