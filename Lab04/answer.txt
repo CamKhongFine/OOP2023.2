@@ -1,0 +1,19 @@
+1. Compare the top-level containers in Swing and AWT:
+-AWT: 
++Frame: The main top-level container for AWT applications.
++Dialog: A top-level container used for pop-up dialogs, can be modal or modeless.
++Applet: Used for creating web applets, embedded within a web page.
+
+-Swing:
++JFrame: A replacement for AWT's Frame, providing additional features and a consistent look-and-feel across platforms.
++JDialog: Similar to AWT's Dialog but with more functionality and better integration with the Swing component architecture.
++JApplet: Replaces AWT's Applet, providing a richer feature set.
++JWindow: Similar to JFrame but without the decorations like title bar and borders.
+
+2. Compare the class name of components in AWT and the corresponding class’s name in Swing 
+=> The most significant different between two library is in Swing, all components have a
+prefix "J" like "JPanel"
+
+3. Compare the event-handling of Swing and AWT applications 
+
+The event-handling are the same but Swing have been added more features than AWT
