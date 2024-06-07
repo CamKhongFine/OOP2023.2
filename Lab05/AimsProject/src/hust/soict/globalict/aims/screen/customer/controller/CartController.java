@@ -200,31 +200,33 @@ public class CartController {
                     return;
                 }
             }
-            if(filteredList.size() != 0) {
-                tblMedia.setItems(filteredList);
-            }
-            else if(cart.getItemsOrdered().size() != 0){
+            if(filter.isEmpty()){
                 tblMedia.setItems(cart.getItemsOrdered());
+            }
+            else {
+                tblMedia.setItems(filteredList);
             }
         }
         else {
-            for(Media media : store.getItemsInStore()) {
-                try {
-                    if (media.getId() == Integer.parseInt(filter)) {
-                        filteredList.add(media);
+            if(!filter.isEmpty()) { // Check if filter is not empty
+                for(Media media : store.getItemsInStore()) {
+                    try {
+                        if (media.getId() == Integer.parseInt(filter)) {
+                            filteredList.add(media);
+                        }
+                    } catch (NullPointerException e) {
+                        return;
                     }
-                } catch (NullPointerException e) {
-                    return;
-                }
-                catch (NumberFormatException e) {
-                    return;
+                    catch (NumberFormatException e) {
+                        return;
+                    }
                 }
             }
-            if(filteredList.size() != 0) {
-                tblMedia.setItems(filteredList);
-            }
-            else if(cart.getItemsOrdered().size() != 0){
+            if(filter.isEmpty()){
                 tblMedia.setItems(cart.getItemsOrdered());
+            }
+            else {
+                tblMedia.setItems(filteredList);
             }
         }
 
